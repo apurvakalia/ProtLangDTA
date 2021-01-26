@@ -1,0 +1,65 @@
+pos_prec: ['[M+H]+', '[M+H-H2O]+', '[M+H-2H2O]+', '[M+2H]2+', '[M+H-NH3]+']
+neg_prec: ['[M-H]-', '[M-H-H2O]-']
+element_list: ['H', 'C',  'O', 'N', 'P', 'S', 'Cl', 'F', 'Br', 'I']
+debug_flag: False
+
+data_dir: "data/KIBA/"
+train_data: "data/KIBA/train_fold0.fa"
+valid_data: "data/KIBA/valid_fold0.fa"
+test_data: "data/KIBA/test_fold0.fa"
+mode: 'positive'
+atom_feature: 'medium'
+bond_feature: 'full'
+self_loop: True
+num_virtual_nodes: 0
+batch_size_train: 8
+batch_size_val: 128
+cpu_workers: 4
+logfile: "logs/KIBA_train_log.txt"
+sanity_check: True
+
+prot_model: 'cnn'
+
+prot_min_len: -1
+prot_max_len: -1
+prot_truncate: -1
+
+mle_sigma: 0.08
+early_stopping_patience: 5
+
+prot_num_layers: 3
+prot_hidden_dim: 512
+prot_embedding_dim: 100
+
+cnn_prot_length: 1000
+cnn_out_channels: 32
+cnn_kernel_size: 8
+
+#pretrained_model: "saved_models/PLUS-RNN_BASE.pt"
+pretrained_model: "early_stopping/prot_1611267202557"
+pretrained_mol_model: "early_stopping/mol_1611267202557"
+num_classes: 1
+gnn_type: "gcn"
+num_gnn_layers: 3
+gnn_hidden_dim: 512
+gnn_out_feat: 196
+global_pooling: "max"
+num_mlp_layers: 3
+gnn_channels: [64,64,64,64,64,64,64,64,64,64]
+attn_heads: [12,12,12,12,12,12,12,12,12,12]
+mlp_out_feat: 1000
+glu: True
+gat_num_heads: 4
+gin_agg: 'max'
+gnn_dropout: 0.15
+activation: 'relu'
+attn_type: 0
+
+l2: 0.1
+prot_lr: 0.5e-3
+mol_lr: 0.5e-3
+num_epoch: 20
+
+cand_size: 50
+cand_iterations: 3
+
